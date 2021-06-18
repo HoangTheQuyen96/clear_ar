@@ -1,0 +1,146 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "openapis/promotion/v1/promotion.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "PromotionService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/promotions": {
+      "post": {
+        "operationId": "PromotionService_CreatePromotion",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Promotion"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreatePromotionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PromotionService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1CreatePromotionRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "required": [
+            "name"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "required": [
+            "title"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "required": [
+            "description"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "required": [
+            "type"
+          ]
+        },
+        "method": {
+          "type": "string",
+          "required": [
+            "method"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "title",
+        "description",
+        "type",
+        "method"
+      ]
+    },
+    "v1Promotion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

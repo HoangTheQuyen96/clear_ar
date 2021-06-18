@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package openapis.promotion.v1;
+
+option go_package = "https://git.finviet.com.vn/promotion/promotion-api/openapis/promotion/v1;promotion";
+
+import "google/protobuf/timestamp.proto";
+import "google/api/field_behavior.proto";
+import "google/api/annotations.proto";
+
+service PromotionService {
+    rpc CreatePromotion(CreatePromotionRequest) returns (Promotion){
+        option (google.api.http) = {
+            post: "/v1/promotions"
+            body: '*'
+        };
+    }
+}
+
+message CreatePromotionRequest {
+    string name = 1 [(google.api.field_behavior) = REQUIRED];
+    string title = 2 [(google.api.field_behavior) = REQUIRED];
+    string description = 3 [(google.api.field_behavior) = REQUIRED];
+    string type = 4 [(google.api.field_behavior) = REQUIRED]; 
+    string method = 5 [(google.api.field_behavior) = REQUIRED]; 
+}
+
+message Promotion {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    string type = 4;
+    string method = 5;
+}
+
+
